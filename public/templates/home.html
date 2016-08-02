@@ -1,0 +1,134 @@
+<div id="main-content" ng-if="!spinnerActive">
+    <div class="container-fluid no-padding" id="main-title">
+        <h1 class="h4 uppercase underline bold">Eventos Principales</h1>
+        <div id="app-links">
+            <h3>Descarga nuestra App en</h3>
+            <a href='https://play.google.com/store/apps/details?id=digital.optimiza.fip.app&hl=es&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Disponible en Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/es_badge_web_generic.png'/></a>
+            <a href='https://itunes.apple.com/us/app/festival-del-pitic/id1114197997?ls=1&mt=8'><img id="apple-badge" src="/img/Download_on_the_App_Store_Badge_ES_135x40.svg" alt="Disponible en la App Store"></a>
+        </div>
+    </div>
+    <div class="content no-padding" id="home">
+        <div ng-repeat="item in items" ng-if="$parent.LAYOUT == 'phones' || $parent.LAYOUT == 'tablets'">
+            <div class="container-fluid">
+                <div class="row" ui-sref="app.artist({slug: item.slug, id: item.objectId})">
+                    <div class="col-sm-8 gallery-thumbnail gallery-container artist-container" style="background-image: url({{item.file ? item.file.file.url : item.bannerUrl}})">
+                        <a ui-sref="app.artist({slug: item.slug, id: item.objectId})"></a>
+                    </div>
+                    <div class="col-sm-4 gallery-container artist-container gallery-title no-padding">
+                        <h2 class="grid-title" ui-sref="app.artist({slug: item.slug, id: item.objectId})">{{item.title}}</h2>
+                        <h4 class="subtitle uppercase" ui-sref="app.artist({slug: item.slug, id: item.objectId})">{{item.venue.name}}<br />{{item.eventDay}}<br /><span class="small">{{item.description}}</span></h4>
+                        <i class="ion ion-arrow-up-b pointer left"></i>
+                        <div ng-bind-html="item.about" class="about"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-repeat="item in items" ng-if="$parent.LAYOUT != 'phones' && $parent.LAYOUT != 'tablets'">
+            <div class="container-fluid" ng-if="$index%8==0 && items[$index]">
+                <div class="row" ui-sref="app.artist({slug: item.slug, id: item.objectId})">
+                    <div class="col-sm-8 gallery-thumbnail gallery-container artist-container" style="background-image: url({{items[$index].file ? items[$index].file.file.url : items[$index].bannerUrl}})">
+                        <a ui-sref="app.artist({slug: item.slug, id: item.objectId})"></a>
+                    </div>
+                    <div class="col-sm-4 gallery-container artist-container gallery-title no-padding">
+                        <h2 class="grid-title" ui-sref="app.artist({slug: item.slug, id: item.objectId})">{{item.title}}</h2>
+                        <h4 class="subtitle uppercase" ui-sref="app.artist({slug: item.slug, id: item.objectId})">{{item.venue.name}}<br />{{item.eventDay}}<br /><span class="small">{{item.description}}</span></h4>
+                        <i class="ion ion-arrow-up-b pointer left"></i>
+                        <div ng-bind-html="item.about" class="about"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid" ng-if="$index%8==0">
+                <div class="row transparent">
+                    <div ng-if="items[$index+1]" ng-class="{'col-sm-8': items[$index+2], 'col-sm-12': !items[$index+2]}"  class="col-sm-8 gallery-container artist-container col left">
+                        <div class="row">
+                            <div class="col-sm-6 gallery-thumbnail" style="background-image: url({{items[$index+1].file ? items[$index+1].file.file.url : items[$index+1].bannerUrl}})">
+                                <a ui-sref="app.artist({slug: items[$index+1].slug, id: items[$index+1].objectId})"></a>
+                            </div>
+                            <div class="col-sm-6 gallery-title no-padding" ui-sref="app.artist({slug: items[$index+1].slug, id: items[$index+1].objectId})">
+                                <h2 class="grid-title" ui-sref="app.artist({slug: items[$index+1].slug, id: items[$index+1].objectId})">{{items[$index+1].title}}</h2>
+                                <h4 class="subtitle uppercase" ui-sref="app.artist({slug: items[$index+1].slug, id: items[$index+1].objectId})">{{items[$index+1].venue.name}}<br />{{items[$index+1].eventDay}}<br /><span class="small">{{items[$index+1].description}}</span></h4>
+                                <i class="ion ion-arrow-up-b pointer left"></i>
+                                <div ng-bind-html="items[$index+1].about" class="about"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ui-sref="app.artist({slug: items[$index+2].slug, id: items[$index+2].objectId})" ng-if="items[$index+2]" ng-class="{'col-sm-4': items[$index+1], 'col-sm-12': !items[$index+1]}"  class="col-sm-4 gallery-thumbnail gallery-container artist-container" style="background-image: url({{items[$index+2].file ? items[$index+2].file.file.url : items[$index+2].bannerUrl}})">
+                        <div class="top"><a ui-sref="app.artist({slug: items[$index+2].slug, id: items[$index+2].objectId})"></a></div>
+                        <div class="bottom">
+                            <h2 class="grid-title" ui-sref="app.artist({slug: items[$index+2].slug, id: items[$index+2].objectId})">{{items[$index+2].title}}</h2>
+                            <h4 class="subtitle uppercase" ui-sref="app.artist({slug: items[$index+2].slug, id: items[$index+2].objectId})">{{items[$index+2].venue.name}}<br />{{items[$index+2].eventDay}}<br /><span class="small">{{items[$index+2].description}}</span></h4>
+                            <i class="ion ion-arrow-up-b pointer top"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid" ng-if="$index%8==0 && items[$index+4]">
+                <div class="row">
+                    <div class="col-sm-4 gallery-container artist-container gallery-title no-padding" ui-sref="app.artist({slug: items[$index+4].slug, id: items[$index+4].objectId})">
+                        <h2 class="grid-title" ui-sref="app.artist({slug: items[$index+4].slug, id: items[$index+4].objectId})">{{items[$index+4].title}}</h2>
+                        <h4 class="subtitle uppercase"ui-sref="app.artist({slug: items[$index+4].slug, id: items[$index+4].objectId})">{{items[$index+4].venue.name}}<br />{{items[$index+4].eventDay}}<br /><span class="small">{{items[$index+4].description}}</span></h4>
+                        <i class="ion ion-arrow-up-b pointer right"></i>
+                        <div ng-bind-html="items[$index+4].about" class="about"></div>
+                    </div>
+                    <div class="col-sm-8 gallery-thumbnail gallery-container artist-container" style="background-image: url({{items[$index+4].file ? items[$index+4].file.file.url : items[$index+4].bannerUrl}})">
+                        <a ui-sref="app.artist({slug: items[$index+4].slug, id: items[$index+4].objectId})"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid" ng-if="$index%8==0">
+                <div class="row transparent">
+                    <div ng-if="items[$index+5]" ng-class="{'col-sm-4': items[$index+3], 'col-sm-12': !items[$index+3]}" class="gallery-thumbnail gallery-container artist-container" style="background-image: url({{items[$index+5].file ? items[$index+5].file.file.url : items[$index+5].bannerUrl}})">
+                        <div class="top"><a ui-sref="app.artist({slug: items[$index+5].slug, id: items[$index+5].objectId})"></a></div>
+                        <div class="bottom">
+                            <h2 class="grid-title" ui-sref="app.artist({slug: items[$index+5].slug, id: items[$index+5].objectId})">{{items[$index+5].title}}</h2>
+                            <h4 class="subtitle uppercase" ui-sref="app.artist({slug: items[$index+5].slug, id: items[$index+5].objectId})">{{items[$index+5].venue.name}}<br />{{items[$index+5].eventDay}}<br /><span class="small">{{items[$index+5].description}}</span></h4>
+                            <i class="ion ion-arrow-up-b pointer top"></i>
+                        </div>
+                    </div>
+                    <div ng-if="items[$index+3]" ng-class="{'col-sm-8': items[$index+5], 'col-sm-12': !items[$index+5]}" class="gallery-container artist-container col right" ng-if="items[$index+3]">
+                        <div class="row">
+                            <div class="col-sm-6 gallery-title no-padding" ui-sref="app.artist({slug: items[$index+3].slug, id: items[$index+3].objectId})">
+                                <h2 class="grid-title" ui-sref="app.artist({slug: items[$index+3].slug, id: items[$index+3].objectId})">{{items[$index+3].title}}</h2>
+                                <h4 class="subtitle uppercase" ui-sref="app.artist({slug: items[$index+3].slug, id: items[$index+3].objectId})">{{items[$index+3].venue.name}}<br />{{items[$index+3].eventDay}}<br /><span class="small">{{items[$index+3].description}}</span></h4>
+                                <i class="ion ion-arrow-up-b pointer right"></i>
+                                <div ng-bind-html="items[$index+3].about" class="about"></div>
+                            </div>
+                            <div class="col-sm-6 gallery-thumbnail" style="background-image: url({{items[$index+3].file ? items[$index+3].file.file.url : items[$index+3].bannerUrl}})">
+                                <a ui-sref="app.artist({slug: items[$index+3].slug, id: items[$index+3].objectId})"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid" ng-if="$index%8==0">
+                <div class="row transparent">
+                    <div ng-if="items[$index+6]" ng-class="{'col-sm-8': items[$index+7], 'col-sm-12': !items[$index+7]}" class="col-sm-8 gallery-container artist-container col left">
+                        <div class="row">
+                            <div ng-if="items[$index+6]" class="col-sm-6 gallery-thumbnail" style="background-image: url({{items[$index+6].file ? items[$index+6].file.file.url : items[$index+6].bannerUrl}})">
+                                <a ui-sref="app.artist({slug: items[$index+6].slug, id: items[$index+6].objectId})"></a>
+                            </div>
+                            <div class="col-sm-6 gallery-title no-padding" ui-sref="app.artist({slug: items[$index+6].slug, id: items[$index+6].objectId})">
+                                <h2 class="grid-title" ui-sref="app.artist({slug: items[$index+6].slug, id: items[$index+6].objectId})">{{items[$index+6].title}}</h2>
+                                <h4 class="subtitle uppercase" ui-sref="app.artist({slug: items[$index+6].slug, id: items[$index+6].objectId})">{{items[$index+6].venue.name}}<br />{{items[$index+6].eventDay}}<br /><span class="small">{{items[$index+6].description}}</span></h4>
+                                <i class="ion ion-arrow-up-b pointer left"></i>
+                                <div ng-bind-html="items[$index+6].about" class="about"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ui-sref="app.artist({slug: items[$index++7].slug, id: items[$index++7].objectId})" ng-if="items[$index+7]" ng-class="{'col-sm-4': items[$index+6], 'col-sm-12': !items[$index+6]}" class="gallery-thumbnail gallery-container artist-container" style="background-image: url({{items[$index+7].file ? items[$index+7].file.file.url : items[$index+7].bannerUrl}})">
+                        <div class="top"><a ui-sref="app.artist({slug: items[$index+7].slug, id: items[$index+7].objectId})"></a></div>
+                        <div class="bottom">
+                            <h2 class="grid-title" ui-sref="app.artist({slug: items[$index+7].slug, id: items[$index+7].objectId})">{{items[$index+7].title}}</h2>
+                            <h4 class="subtitle uppercase" ui-sref="app.artist({slug: items[$index+7].slug, id: items[$index+7].objectId})">{{items[$index+7].venue.name}}<br />{{items[$index+7].eventDay}}<br /><span class="small">{{items[$index+7].description}}</span></h4>
+                            <i class="ion ion-arrow-up-b pointer top"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

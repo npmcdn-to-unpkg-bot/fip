@@ -1,0 +1,49 @@
+<div class="preview-img" id="press-preview" ng-if="!spinnerActive">
+    <h2 class="uppercase title w-detail">Prensa</h2>
+</div>
+<div class="content no-padding" id="press-page">
+    <div class="container-fluid" ng-if="$parent.LAYOUT == 'phones' || $parent.LAYOUT == 'tablets'">
+        <div class="row article" ng-repeat="i in items">
+            <div class="article-thumbnail">
+                <a href="{{i.link}}" target="_blank"><img src="{{i.thumbnail}}" class="img-responsive"/></a>
+                <div class="article-content">
+                    <h2 class="grid-title"><a href="{{i.link}}" target="_blank">{{i.title}}</a></h2>
+                    <h4 class="grid-subtitle uppercase" ng-if="i.subtitle">{{i.subtitle}}</h4>
+                    <h4 class="grid-subtitle uppercase boletin-label" ng-if="i.id">Boletín {{i.id}}</h4>
+                    <p>{{i.text}}</p>
+                    <div class="text-left">
+                        <a href="{{i.link}}" target="_blank">Ver más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" ng-if="$parent.LAYOUT == 'main'">
+        <div class="row article" ng-repeat="i in items">
+            <div ng-class="{'col-sm-4 article-thumbnail': !($index%2), 'col-sm-8': $index%2}">
+                <a href="{{i.link}}" target="_blank"><img ng-if="!($index%2)" src="{{i.thumbnail}}" /></a>
+                <div ng-if="$index%2" class="article-content">
+                    <h2 class="grid-title"><a href="{{i.link}}" target="_blank">{{i.title}}</a></h2>
+                    <h4 class="grid-subtitle uppercase" ng-if="i.subtitle">{{i.subtitle}}</h4>
+                    <h4 class="grid-subtitle uppercase boletin-label" ng-if="i.id">Boletín {{i.id}}</h4>
+                    <p>{{i.text}}</p>
+                    <div class="text-left">
+                        <a href="{{i.link}}" target="_blank">Ver más</a>
+                    </div>
+                </div>
+            </div>
+            <div ng-class="{'col-sm-4 article-thumbnail': $index%2, 'col-sm-8': !($index%2)}">
+                <a href="{{i.link}}" target="_blank"><img ng-if="$index%2" src="{{i.thumbnail}}" /></a>
+                <div ng-if="!($index%2)" class="article-content">
+                    <h2 class="grid-title">{{i.title}}</h2>
+                    <h4 class="grid-subtitle uppercase" ng-if="i.subtitle">{{i.subtitle}}</h4>
+                    <h4 class="grid-subtitle uppercase boletin-label" ng-if="i.id">Boletín {{i.id}}</h4>
+                    <p>{{i.text}}</p>
+                    <div class="text-right">
+                        <a href="{{i.link}}" target="_blank">Ver más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

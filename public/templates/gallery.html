@@ -1,0 +1,96 @@
+<div class="preview-img" id="gallery-preview" ng-if="!spinnerActive">
+    <h2 class="uppercase title">Multimedia</h2>
+</div>
+<div class="content no-padding" ng-if="$parent.LAYOUT != 'phones'">
+    <div class="padding">
+        <h2><i class="ion ion-social-youtube"></i> Youtube</h2>
+    </div>
+    <div class="container-fluid">
+        <div class="row" ng-if="videos.items && videos.items.length">
+            <a href="https://www.youtube.com/v/{{video.id}}" target="_blank" class="col-sm-4 social-item" ng-repeat="video in videos.items">
+                <div class="social-item-bg" style="background-image: url({{video.thumbnails.high.url}})"></div>
+                <h3 class="title h4">{{video.title}}</h3>
+            </a>
+        </div>
+        <div class="padding" ng-if="!videos.items || !videos.items.length">
+            <uib-alert type="warning">No hay videos en nuestro canal de Youtube aun</uib-alert>
+        </div>
+    </div>
+
+    <div class="padding">
+        <h2><i class="ion ion-social-instagram"></i> Instagram</h2>
+    </div>
+    <div class="container-fluid">
+        <div class="row" ng-if="instagram.items && instagram.items.length">
+            <a href="{{item.link}}" target="_blank" class="col-sm-4 social-item" ng-repeat="item in instagram.items">
+                <div class="social-item-bg" style="background-image: url({{item.images.standard}})"></div>
+                <h3 class="title h4">{{item.safeText}}</h3>
+            </a>
+        </div>
+        <div class="padding" ng-if="!instagram.items || !instagram.items.length">
+            <uib-alert type="warning">No hay imagenes de Instagram aun</uib-alert>
+        </div>
+    </div>
+
+    <div class="padding">
+        <h2><i class="ion ion-images"></i> Flickr</h2>
+    </div>
+    <div class="container-fluid">
+        <div class="row" ng-if="flickr.items && flickr.items.length">
+            <a href="{{item.large}}" target="_blank" class="col-sm-4 social-item" ng-repeat="item in flickr.items">
+                <div class="social-item-bg" style="background-image: url({{item.medium}})"></div>
+                <h3 class="title h4">{{item.title}}</h3>
+            </a>
+        </div>
+        <div class="padding" ng-if="!flickr.items || !flickr.items.length">
+            <uib-alert type="warning">No hay imagenes de Flickr aun</uib-alert>
+        </div>
+    </div>
+</div>
+
+<div class="content no-padding" ng-if="$parent.LAYOUT == 'phones'">
+    <div class="padding">
+        <h2><i class="ion ion-social-youtube"></i> Youtube</h2>
+    </div>
+    <div class="container-fluid">
+        <div class="row" ng-if="videos.items && videos.items.length">
+            <a href="https://www.youtube.com/v/{{video.id}}" target="_blank" class="col-sm-12 social-item" ng-repeat="video in videos.items">
+                <img class="social-item-bg" src="{{video.thumbnails.high.url}}"/>
+                <h3 class="title h4">{{video.title}}</h3>
+            </a>
+        </div>
+        <div class="padding" ng-if="!videos.items || !videos.items.length">
+            <uib-alert type="warning">No hay videos en nuestro canal de Youtube aun</uib-alert>
+        </div>
+    </div>
+
+    <div class="padding">
+        <h2><i class="ion ion-social-instagram"></i> Instagram</h2>
+    </div>
+    <div class="container-fluid">
+        <div class="row" ng-if="instagram.items && instagram.items.length">
+            <a href="{{item.link}}" target="_blank" class="col-sm-12 social-item" ng-repeat="item in instagram.items">
+                <img class="social-item-bg" src="{{item.images.standard}}"/>
+                <h3 class="title h4">{{item.safeText}}</h3>
+            </a>
+        </div>
+        <div class="padding" ng-if="!instagram.items || !instagram.items.length">
+            <uib-alert type="warning">No hay imagenes de Instagram aun</uib-alert>
+        </div>
+    </div>
+
+    <div class="padding">
+        <h2><i class="ion ion-images"></i> Flickr</h2>
+    </div>
+    <div class="container-fluid">
+        <div class="row" ng-if="flickr.items && flickr.items.length">
+            <a href="{{item.large}}" target="_blank" class="col-sm-12 social-item" ng-repeat="item in flickr.items">
+                <img class="social-item-bg" src="{{item.medium}}"/>
+                <h3 class="title h4">{{item.title}}</h3>
+            </a>
+        </div>
+        <div class="padding" ng-if="!flickr.items || !flickr.items.length">
+            <uib-alert type="warning">No hay imagenes de Flickr aun</uib-alert>
+        </div>
+    </div>
+</div>

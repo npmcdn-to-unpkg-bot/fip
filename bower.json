@@ -1,0 +1,11 @@
+{
+  "name": "FIP",
+  "private": "true",
+  "dependencies": {
+    "ngGallery": "*",
+    "angular-bootstrap-lightbox": "^0.12.0",
+    "ngmap": "^1.17.3",
+    "underscore.string": "^3.3.4",
+    "moment": "^2.13.0"
+  }
+}

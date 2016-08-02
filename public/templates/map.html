@@ -1,0 +1,35 @@
+<div id="main-content" ng-if="!spinnerActive">
+    <img src="/img/mapa-header.jpg" alt="Encuentra nuestros foros" class="img-responsive"/>
+    <div class="content no-padding-mobile">
+        <a href="/img/mapa-large.jpg" target="_blank" title="Mapa del FIP"><img src="/img/mapa.jpg" alt="Mapa del FIP" class="img-responsive"/></a>
+        <br />
+        <div map-lazy-load="https://maps.google.com/maps/api/js"
+            map-lazy-load-params="{{googleMapsUrl}}">
+            <ng-map
+                center="[{{map.center.latitude}}, {{map.center.longitude}}]"
+                zoom="{{map.zoom}}"
+                zoom-to-include-markers="auto"
+                id="map-map">
+                <marker
+                    position="[{{marker.position.latitude}}, {{marker.position.longitude}}]"
+                    title="{{marker.name}}"
+                    ng-repeat="marker in items"
+                    on-click="showDetail(event, marker)"
+                    id="{{marker.objectId}}"></marker>
+                <info-window id="map-infowindow">
+                    <div ng-non-bindable="">
+                        <h4 class="uppercase">{{venue.name}}</h4>
+                        <div ng-if="venue.phone_number"><strong>Teléfono:</strong> {{venue.phone_number}}</div>
+                        <div ng-if="venue.full_address"><strong>Dirección:</strong> {{venue.full_address}}</div>
+                        <div><strong>Categoría:</strong> {{venue.activity_description}}</div>
+                        <br />
+                        <div>
+                            <a href="{{venue.www}}" target="_blank" ng-if="venue.www" class="btn btn-sm btn-default"><i class="ion ion-link"></i> Pagina Web</a>
+                            <a href="mailto:{{venue.email_address}}" ng-if="venue.email_address" class="btn btn-sm btn-default"><i class="ion ion-paper-airplane"></i> Email</a>
+                        </div>
+                    </div>
+                </info-window>
+            </ng-map>
+        </div>
+    </div>
+</div>

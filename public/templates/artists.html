@@ -1,0 +1,84 @@
+<div id="main-content" ng-if="!spinnerActive">
+    <img src="/img/artists.jpg" alt="Grafico de los artistas del FIP" class="img-responsive"/>
+    <div class="content no-padding" id="artists-page">
+        <div class="padding" id="artists-filter" ng-if="$parent.LAYOUT != 'phones'">
+            <ul>
+                <li ng-repeat="f in allFilters">
+                    <a ng-click="filter(f)" ng-if="filters.indexOf(f) >= 0" href="#!/artistas">{{f}}</a>
+                    <span ng-if="filters.indexOf(f) === -1">{{f}}</span>
+                </li>
+                <li>
+                    <a ng-click="filter(false)" href="#!/artistas">Todos</a>
+                </li>
+            </ul>
+        </div>
+        <div class="padding" id="artists-filter" ng-if="$parent.LAYOUT == 'phones'">
+            <ul>
+                <li ng-repeat="f in allFilters">
+                    <a ng-click="filter(f)" ng-if="filters.indexOf(f) >= 0" href="#!/artistas">{{f}}</a>
+                </li>
+                <li>
+                    <a ng-click="filter(false)" href="#!/artistas">Todos</a>
+                </li>
+            </ul>
+        </div>
+        <div ng-repeat="item in showItems" ng-if="$parent.LAYOUT == 'phones'">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-8 gallery-container artist-container">
+                        <div class="row">
+                            <div class="col-sm-6 gallery-thumbnail" ng-class="{default: item.bannerUrl}" style="background-image: url({{item.file ? item.file.file.url : item.bannerUrl}})">
+                                <a ui-sref="app.artist({slug: item.slug, id: item.objectId})"></a>
+                            </div>
+                            <div class="col-sm-6 gallery-title">
+                                <h2 class="grid-title"><a ui-sref="app.artist({slug: item.slug, id: item.objectId})">{{item.title}}<br /><span class="small">{{item.description}}</span></a></h2>
+                                <i class="ion ion-arrow-up-b pointer left"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="$parent.LAYOUT != 'phones'">
+            <div ng-repeat="item in showItems" ng-if="$index%3==0">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-8 gallery-container artist-container">
+                            <div class="row">
+                                <div class="col-sm-6 gallery-thumbnail" ng-class="{default: showItems[$index].bannerUrl}" style="background-image: url({{showItems[$index].file ? showItems[$index].file.file.url : showItems[$index].bannerUrl}})">
+                                    <a ui-sref="app.artist({slug: showItems[$index].slug, id: showItems[$index].objectId})"></a>
+                                </div>
+                                <div class="col-sm-6 gallery-title">
+                                    <h2 class="grid-title"><a ui-sref="app.artist({slug: showItems[$index].slug, id: showItems[$index].objectId})">{{showItems[$index].title}}<br /><span class="small">{{items[$index].description}}</span></a></h2>
+                                    <i class="ion ion-arrow-up-b pointer left"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 gallery-thumbnail gallery-container" ng-class="{default: showItems[$index+1].bannerUrl}" style="background-image: url({{showItems[$index+1].file ? showItems[$index+1].file.file.url : showItems[$index+1].bannerUrl}})">
+                            <a ui-sref="app.artist({slug: showItems[$index+1].slug, id: showItems[$index+1].objectId})"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-8 gallery-container artist-container">
+                            <div class="row">
+                                <div class="col-sm-6 gallery-title">
+                                    <h2 class="grid-title"><a ui-sref="app.artist({slug: showItems[$index+2].slug, id: showItems[$index+2].objectId})">{{showItems[$index+2].title}}<br /><span class="small">{{items[$index+2].description}}</span></a></h2>
+                                    <i class="ion ion-arrow-up-b pointer right bottom"></i>
+                                </div>
+                                <div class="col-sm-6 gallery-thumbnail" ng-class="{default: showItems[$index+2].bannerUrl}" style="background-image: url({{showItems[$index+2].file ? showItems[$index+2].file.file.url : showItems[$index+2].bannerUrl}})">
+                                    <a ui-sref="app.artist({slug: showItems[$index+2].slug, id: showItems[$index+2].objectId})"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 gallery-title gallery-container artist-container">
+                            <h2 class="grid-title"><a ui-sref="app.artist({slug: showItems[$index+1].slug, id: showItems[$index+1].objectId})">{{showItems[$index+1].title}}<br /><span class="small">{{items[$index+1].description}}</span></a></h2>
+                            <i class="ion ion-arrow-up-b pointer top"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

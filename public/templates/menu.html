@@ -1,0 +1,26 @@
+<nav class="navbar navbar-default navbar-fixed-top" id="main-nav">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" ui-sref="app.home()" id="logo">
+                <img alt="FIP" src="img/logo.png">
+            </a>
+        </div>
+        <div id="mobile-nav-trigger">
+            <a ng-click="isMenuVisible = !isMenuVisible"><i class="ion ion-navicon-round"></i></a>
+        </div>
+        <ul class="nav navbar-nav" id="main-nav-menu" ng-class="{visible: isMenuVisible}" ng-click="isMenuVisible = false">
+            <li><a ui-sref="app.history()">Historia</a></li>
+            <li><a ui-sref="app.hmo()">Hermosillo</a></li>
+            <li><a ui-sref="app.artists()">Artistas</a></li>
+            <li><a ui-sref="app.map()">Mapa</a></li>
+            <li><a ui-sref="app.gallery()">Multimedia</a></li>
+            <li><a ui-sref="app.press()">Prensa</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right" id="main-nav-social">
+            <li><a href="https://twitter.com/Festivalpitic" target="_blank"><i class="ion ion-social-twitter"></i></a></li>
+            <li><a href="https://www.facebook.com/FestivaldelPitic" target="_blank"><i class="ion ion-social-facebook"></i></a></li>
+            <li><a href="https://www.instagram.com/festivaldelpitic/" target="_blank"><i class="ion ion-social-instagram"></i></a></li>
+        </ul>
+    </div>
+</nav>
